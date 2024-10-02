@@ -22,7 +22,8 @@ setup(
         'console_scripts': [
             'teleop = kachaka_teleop.teleop:main',
             'compressedImage2dataset = kachaka_teleop.compressedImage2dataset:main',
-            'image_to_video_node = kachaka_teleop.image2video:main'     
+            'image_to_video_node = kachaka_teleop.image2video:main',
+            'get_pos_node = kachaka_teleop.getPosNode:main'     
         ],
     },
 )

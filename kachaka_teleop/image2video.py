@@ -9,7 +9,7 @@ class ImageToVideoNode(Node):
     def __init__(self):
         super().__init__('image_to_video_node')
         qos_profile = rclpy.qos.qos_profile_sensor_data
-        self.subscription = self.create_subscription(Image, '/kachaka/front_camera/image_raw', self.image_callback, qos_profile)
+        self.subscription = self.create_subscription(Image, 'EncodeImage', self.image_callback, qos_profile)
         self.subscription  # prevent unused variable warning
         self.cv_bridge = CvBridge()
         self.frames = []
@@ -17,7 +17,8 @@ class ImageToVideoNode(Node):
         self.video_writer = None
 
     def image_callback(self, msg):
-        cv_image = self.cv_bridge.imgmsg_to_cv2(msg, 'bgr8')
+        # cv_image = self.cv_bridge.imgmsg_to_cv2(msg, 'bgr8')
+        cv_image = self.cv_bridge.imgmsg_to_cv2(msg)
         self.frames.append(cv_image)
 
     def save_video(self):
